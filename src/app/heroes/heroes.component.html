@@ -1,8 +1,29 @@
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div>
+<div class="container">
+  <div class="sub-container">
+    <h2>My Heroes</h2>
+    <ul class="heroes">
+      <li
+        *ngFor="let hero of heroes"
+        (click)="onSelect(hero)"
+        [class.selected]="hero === selectedHero"
+      >
+        <span class="badge">{{ hero.id }}</span> {{ hero.name }}
+      </li>
+    </ul>
+    <app-hero-detail [hero]="selectedHero"></app-hero-detail>
+  </div>
 
-<div>
-    <label for="name">Hero name: </label>
-    <input id="name" [(ngModel)]="hero.name" placeholder="name">
+  <div class="sub-container">
+    <h2>My Animals</h2>
+    <ul class="animals">
+      <li
+        *ngFor="let animal of animals"
+        (click)="onSelectAnimal(animal)"
+        [class.selected] = "animal === selectedAnimal"
+      >
+        <span class="badge">{{ animal.id }}</span> {{ animal.type }}
+      </li>
+    </ul>
+    <app-animal-detail [animal]="selectedAnimal"></app-animal-detail>
+  </div>
 </div>
